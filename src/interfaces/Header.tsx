@@ -1,7 +1,11 @@
-interface HeaderProps {
-	children: React.ReactNode
-}
+import { NavBar } from './NavBar'
 
-export const Header: React.FunctionComponent<HeaderProps> = ({ children }) => {
-	return <header>{children}</header>
+interface HeaderProps {}
+
+export const Header: React.FunctionComponent<HeaderProps> = () => {
+	return (
+		<header className='w-screen absolute z-10'>
+			<NavBar />
+		</header>
+	)
 }
