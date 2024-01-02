@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
 		<html lang='en'>
-			<body className={`${inter.className} w-screen px-4 lg:px-6`}>
+			<body className={inter.className}>
 				<Header>
 					<NavBar />
 				</Header>
