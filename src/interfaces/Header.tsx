@@ -4,7 +4,7 @@ interface HeaderProps {}
 
 export const Header: React.FunctionComponent<HeaderProps> = () => {
 	return (
-		<header className='w-screen absolute z-10'>
+		<header className='w-screen fixed z-20'>
 			<NavBar />
 		</header>
 	)

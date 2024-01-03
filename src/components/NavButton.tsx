@@ -1,17 +1,19 @@
 interface NavButtonProps {
 	children: React.ReactNode
 	bg?: boolean
+	className?: string
 }
 
 export const NavButton: React.FunctionComponent<NavButtonProps> = ({
 	children,
 	bg,
+	className,
 }) => {
 	return (
 		<button
 			className={`${
 				bg && 'bg-gray-100 p-[6px] border-2 border-gray-200 hidden md:block'
-			} p-2 rounded-full hover:bg-gray-200 duration-100`}
+			} p-2 rounded-full hover:bg-gray-200 duration-100 ${className}`}
 			type='button'>
 			{children}
 		</button>

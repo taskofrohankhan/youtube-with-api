@@ -18,7 +18,7 @@ interface SideBarProps {}
 export const SideBar: React.FunctionComponent<SideBarProps> = () => {
 	const pathname = usePathname()
 	return (
-		<aside className='h-full w-60 py-3 pl-3 pr-6 divide-y flex flex-col gap-3'>
+		<aside className='h-full w-60 py-3 pl-3 pr-6 divide-y flex-col gap-3 fixed z-10 bg-white hidden md:flex'>
 			<div>
 				<Navlink
 					path='/'
