@@ -4,6 +4,30 @@
 
 @layer base {
   body {
-    @apply m-0 p-0 box-border relative text-slate-800
+    @apply m-0 p-0 box-border w-full relative text-slate-800 scrollbar
+  }
+}
+
+@layer components {
+  /* width */
+    .scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  .scrollbar::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  /* Handle */
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border: 2px solid white;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }
