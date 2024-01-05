@@ -4,9 +4,12 @@ export const homeVideos = async () => {
 	return axiosAPI({
 		method: 'GET',
 		url: '/videos',
-    params: {
-			part: 'snippet',
+		params: {
+			part: 'snippet,contentDetails',
 			chart: 'mostPopular',
+			regionCode: 'BD',
+			videoCategoryId: '28',
+			maxResults: '20'
 		},
 	})
 }

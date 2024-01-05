@@ -5,7 +5,7 @@ import { baseURL } from '@/constants/baseURL'
 import { HOME_VIDEOS } from '@/constants/queryKeys'
 import { homeVideos } from '@/functions/homeVideos.fetchers'
 import { ItemsEntity } from '@/types/ResVideos.types'
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 
 export default function Home() {
 	const { data: videos } = useQuery({
@@ -20,13 +20,13 @@ export default function Home() {
 			{videos.data.items.map((item: ItemsEntity) => (
 				<VideoThumb
 					key={item.id}
-					thumbnail={item.snippet.thumbnails.standard.url}
-					duration='21:50'
+					thumbnail={item.snippet.thumbnails.maxres.url}
+					duration={item.contentDetails.duration}
 					channelId={item.snippet.channelId}
 					title={item.snippet.title}
-					videoPath='/video'
+					videoPath={`${baseURL}/watch?v=${item.id}`}
 					channel={item.snippet.channelTitle}
-					channelPath={baseURL + `/c/${item.snippet.channelId}`}
+					channelPath={`${baseURL}/c/${item.snippet.channelId}`}
 					views='45K views.'
 					date='6 days ago'
 				/>

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import ChannelAvatar from './ChannelAvatar'
+import { durationConvertor } from '@/functions/duration.convertor'
 
 interface VideoThumbProps {
 	thumbnail: string
@@ -25,6 +26,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 	views,
 	date,
 }) => {
+	const convertedDuration = durationConvertor(duration)
 	return (
 		<div className='flex flex-col flex-1 basis-auto md:basis-80 gap-2'>
 			<div className='relative'>
@@ -32,14 +34,14 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 					<div className='rounded-xl overflow-clip'>
 						<Image
 							src={thumbnail}
-							width={1920}
-							height={1080}
+							width={1280}
+							height={720}
 							alt={'Thumbnail'}
 						/>
 					</div>
 				</Link>
 				<div className='absolute right-2 bottom-2 bg-slate-950 text-white text-xs px-1 rounded'>
-					{duration}
+					{convertedDuration}
 				</div>
 			</div>
 
