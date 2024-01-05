@@ -1,1 +1,2 @@
 export const HOME_VIDEOS = 'HOME_VIDEOS'
+export const CHANNEL_AVATAR = 'CHANNEL_AVATAR'

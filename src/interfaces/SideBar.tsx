@@ -68,7 +68,7 @@ export const SideBar: React.FunctionComponent<SideBarProps> = () => {
 							src={'/wafilifeprofile.jpg'}
 							width={24}
 							height={24}
-							alt='Profile picture'
+							alt={'Profile picture'}
 						/>
 					}
 					text='Wafilife'
