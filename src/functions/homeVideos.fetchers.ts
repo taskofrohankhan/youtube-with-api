@@ -5,11 +5,11 @@ export const homeVideos = async () => {
 		method: 'GET',
 		url: '/videos',
 		params: {
-			part: 'snippet,contentDetails',
+			part: 'snippet,contentDetails,statistics',
 			chart: 'mostPopular',
 			regionCode: 'BD',
 			videoCategoryId: '28',
-			maxResults: '20'
+			maxResults: '50',
 		},
 	})
 }

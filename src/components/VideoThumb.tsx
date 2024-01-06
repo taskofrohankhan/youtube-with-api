@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ChannelAvatar from './ChannelAvatar'
 import { durationConvertor } from '@/functions/duration.convertor'
+import { statisticsConvertor } from '@/functions/statistics.convertor'
 
 interface VideoThumbProps {
 	thumbnail: string
@@ -27,6 +28,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 	date,
 }) => {
 	const convertedDuration = durationConvertor(duration)
+	const convertedViews = statisticsConvertor(views)
 	return (
 		<div className='flex flex-col flex-1 basis-auto md:basis-80 gap-2'>
 			<div className='relative'>
@@ -37,6 +39,8 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 							width={1280}
 							height={720}
 							alt={'Thumbnail'}
+							priority={true}
+							placeholder={"empty"}
 						/>
 					</div>
 				</Link>
@@ -63,7 +67,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 						</div>
 
 						<div className='flex gap-2'>
-							<span>{views}</span>
+							<span>{convertedViews} Views.</span>
 							<span>{date}</span>
 						</div>
 					</div>

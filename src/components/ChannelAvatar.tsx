@@ -15,16 +15,18 @@ const ChannelAvatar: React.FunctionComponent<ChannelAvatarProps> = ({
 	channelId,
 }) => {
 	const { data: channel } = useQuery({
-		queryKey: [CHANNEL_AVATAR],
+		queryKey: [CHANNEL_AVATAR, channelId],
 		queryFn: () => channelAvatar(channelId),
 	})
+
+	if (!channel) return <main>404</main>
 
 	return (
 		<div>
 			<Link href={baseURL + `/c/${channelId}`}>
 				<div className='rounded-full overflow-clip w-9 h-9 relative'>
 					<Image
-						src={'/wafilifeprofile.jpg'}
+						src={channel?.data.items[0].snippet.thumbnails.high.url}
 						alt={'Profile picture'}
 						fill={true}
 						sizes={'36'}

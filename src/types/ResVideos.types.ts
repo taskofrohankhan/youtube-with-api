@@ -11,6 +11,7 @@ export interface ItemsEntity {
 	id: string
 	snippet: Snippet
 	contentDetails: ContentDetails
+	statistics: Statistics
 }
 export interface Snippet {
 	publishedAt: string
@@ -23,7 +24,7 @@ export interface Snippet {
 	liveBroadcastContent: string
 	defaultLanguage?: string | null
 	localized: Localized
-	defaultAudioLanguage: string
+	defaultAudioLanguage?: string | null
 	tags?: string[] | null
 }
 export interface Thumbnails {
@@ -52,6 +53,12 @@ export interface ContentDetails {
 	projection: string
 }
 export interface ContentRating {}
+export interface Statistics {
+	viewCount: string
+	likeCount?: string | null
+	favoriteCount: string
+	commentCount?: string | null
+}
 export interface PageInfo {
 	totalResults: number
 	resultsPerPage: number
