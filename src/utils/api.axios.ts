@@ -7,4 +7,5 @@ export const axiosAPI = axios.create({
 	params: {
 		key: YOUTUBE_API_KEY_ONE,
 	},
+	responseType: 'json',
 })

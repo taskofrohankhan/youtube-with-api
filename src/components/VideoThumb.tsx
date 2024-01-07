@@ -30,7 +30,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 	const convertedDuration = durationConvertor(duration)
 	const convertedViews = statisticsConvertor(views)
 	return (
-		<div className='flex flex-col flex-1 basis-auto md:basis-80 gap-2'>
+		<div className='flex flex-col flex-1 basis-auto md:basis-80 md:max-w-[380px] h-auto gap-2 overflow-hidden'>
 			<div className='relative'>
 				<Link href={videoPath}>
 					<div className='rounded-xl overflow-clip'>
@@ -40,7 +40,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 							height={720}
 							alt={'Thumbnail'}
 							priority={true}
-							placeholder={"empty"}
+							placeholder={'empty'}
 						/>
 					</div>
 				</Link>
@@ -56,7 +56,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 					<div>
 						<Link
 							href={videoPath}
-							className='text-base font-bold line-clamp-2 text-slate-800'>
+							className='text-base font-bold line-clamp-2 whitespace-normal text-slate-800'>
 							{title}
 						</Link>
 					</div>

@@ -1,7 +1,7 @@
 import { axiosAPI } from '@/utils/api.axios'
 
 export const channelAvatar = async (channelId: string) => {
-	return axiosAPI({
+	const data = await axiosAPI({
 		method: 'GET',
 		url: `/channels`,
 		params: {
@@ -9,4 +9,6 @@ export const channelAvatar = async (channelId: string) => {
 			id: channelId,
 		},
 	})
+
+	return data
 }

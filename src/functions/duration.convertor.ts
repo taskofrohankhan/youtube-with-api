@@ -1,7 +1,7 @@
 export const durationConvertor = (duration: string) => {
-	const convertedDuration = duration.toLowerCase()
+	const convertedDuration = duration?.toLowerCase()
 
-	if (!convertedDuration.includes('m')) {
+	if (!convertedDuration?.includes('m')) {
 		return convertedDuration?.replace('pt', '')
 	}
 
