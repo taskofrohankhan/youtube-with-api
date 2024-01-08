@@ -6,28 +6,30 @@ import { HOME_VIDEOS } from '@/constants/queryKeys'
 import { homeVideos } from '@/functions/homeVideos.fetchers'
 import { ItemsEntity, ResVideos } from '@/types/ResVideos.types'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 export default function Home() {
-	const [pageToken, setPageToken] = useState<string | undefined>()
-	const [pageTokenIndex, setPageTokenIndex] = useState<number>(0)
+	const { ref, inView } = useInView()
 
-	console.log({ pageToken, pageTokenIndex })
-
-	const { data: videos, fetchNextPage } = useInfiniteQuery({
+	const {
+		data: videos,
+		fetchNextPage,
+		isFetchingNextPage,
+		hasNextPage,
+	} = useInfiniteQuery({
 		queryKey: [HOME_VIDEOS],
-		queryFn: () => homeVideos({ pageToken: pageToken }),
-		initialPageParam: 1,
-		getNextPageParam: (_lastPage, page) => {
-			return page.length + 1
-		},
+		queryFn: homeVideos,
+		initialPageParam: undefined,
+		getPreviousPageParam: (firstPage) => firstPage.prevPageToken ?? undefined,
+		getNextPageParam: (lastPage) => lastPage.nextPageToken ?? undefined,
 	})
 
-	console.log(videos?.pages)
-
 	useEffect(() => {
-		setPageToken(videos?.pages[pageTokenIndex].nextPageToken)
-	}, [videos?.pages, pageTokenIndex])
+		if (inView) {
+			fetchNextPage()
+		}
+	}, [inView, fetchNextPage])
 
 	return (
 		<main className='md:ml-60 flex flex-wrap gap-3 pl-3 pr-6 py-3'>
@@ -48,14 +50,17 @@ export default function Home() {
 				)),
 			)}
 			<button
+				ref={ref}
 				title='Load More'
 				type='button'
-				onClick={async () => {
-					await fetchNextPage()
-					setPageTokenIndex(pageTokenIndex + 1)
-					setPageToken(videos?.pages[pageTokenIndex].nextPageToken)
+				onClick={() => {
+					fetchNextPage()
 				}}>
-				Load More
+				{isFetchingNextPage
+					? 'Loading More'
+					: hasNextPage
+					? 'Load Newer'
+					: 'Nothing to load'}
 			</button>
 		</main>
 	)
