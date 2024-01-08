@@ -2,7 +2,7 @@
 
 import { baseURL } from '@/constants/baseURL'
 import { CHANNEL_AVATAR } from '@/constants/queryKeys'
-import { channelAvatar } from '@/functions/channelAvatar.fetchers'
+import { channelAvatar } from '@/functions/fetchers'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,8 +18,6 @@ const ChannelAvatar: React.FunctionComponent<ChannelAvatarProps> = ({
 		queryKey: [CHANNEL_AVATAR, channelId],
 		queryFn: () => channelAvatar(channelId),
 	})
-
-	if (!channel) return <main>404</main>
 
 	return (
 		<div>

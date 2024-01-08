@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import ChannelAvatar from './ChannelAvatar'
-import { durationConvertor } from '@/functions/duration.convertor'
-import { statisticsConvertor } from '@/functions/statistics.convertor'
+import { durationConvertor } from '@/functions/convertors'
+import { statisticsConvertor } from '@/functions/convertors'
 
 interface VideoThumbProps {
 	thumbnail: string

@@ -11,3 +11,7 @@ export const durationConvertor = (duration: string) => {
 		?.replace('m', ':')
 		?.replace('s', '')
 }
+
+export const statisticsConvertor = (statistics: string) => {
+	return Number(statistics).toLocaleString('en-US')
+}
