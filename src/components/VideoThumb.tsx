@@ -3,6 +3,7 @@ import Link from 'next/link'
 import ChannelAvatar from './ChannelAvatar'
 import { durationConvertor } from '@/functions/convertors'
 import { statisticsConvertor } from '@/functions/convertors'
+import { DateDifference } from './DateDifference'
 
 interface VideoThumbProps {
 	thumbnail: string
@@ -68,7 +69,7 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 
 						<div className='flex gap-2'>
 							<span>{convertedViews} Views.</span>
-							<span>{date}</span>
+							<DateDifference date={date} />
 						</div>
 					</div>
 				</div>

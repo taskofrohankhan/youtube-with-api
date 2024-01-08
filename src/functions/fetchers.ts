@@ -12,8 +12,8 @@ export const homeVideos = async ({
 			part: 'snippet,contentDetails,statistics',
 			chart: 'mostPopular',
 			regionCode: 'BD',
-			videoCategoryId: '10',
-			maxResults: '24',
+			videoCategoryId: '28',
+			maxResults: '6',
 			pageToken: pageParam,
 		},
 	})

@@ -34,7 +34,7 @@ export default function Home() {
 
 	return (
 		<main className='md:ml-60 w-full flex flex-col justify-center'>
-			<div className='max-w-[3840px] mx-auto flex flex-wrap gap-3 pl-3 pr-6 py-3'>
+			<div className='max-w-[3840px] mx-auto flex flex-wrap gap-x-3 gap-y-4 pl-3 pr-6 py-3'>
 				{videos?.pages.map((data: ResVideos) =>
 					data.items?.map((item: ItemsEntity) => (
 						<VideoThumb
@@ -47,7 +47,7 @@ export default function Home() {
 							channel={item.snippet.channelTitle}
 							channelPath={`${baseURL}/c/${item.snippet.channelId}`}
 							views={item.statistics.viewCount}
-							date='6 days ago'
+							date={item.snippet.publishedAt}
 						/>
 					)),
 				)}
