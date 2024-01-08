@@ -3,7 +3,7 @@
 import { VideoThumb } from '@/components/VideoThumb'
 import { baseURL } from '@/constants/baseURL'
 import { HOME_VIDEOS } from '@/constants/queryKeys'
-import { homeVideos } from '@/functions/fetchers'
+import { videos } from '@/functions/fetchers'
 import { Spinner } from '@/libs/spinner.react-spinners'
 import { ItemsEntity, ResVideos } from '@/types/ResVideos'
 import { useInfiniteQuery } from '@tanstack/react-query'
@@ -14,13 +14,13 @@ export default function Home() {
 	const { ref, inView } = useInView()
 
 	const {
-		data: videos,
+		data: resVideos,
 		fetchNextPage,
 		isFetchingNextPage,
 		hasNextPage,
 	} = useInfiniteQuery({
 		queryKey: [HOME_VIDEOS],
-		queryFn: homeVideos,
+		queryFn: videos,
 		initialPageParam: undefined,
 		getPreviousPageParam: (firstPage) => firstPage.prevPageToken ?? undefined,
 		getNextPageParam: (lastPage) => lastPage.nextPageToken ?? undefined,
@@ -35,7 +35,7 @@ export default function Home() {
 	return (
 		<main className='md:ml-60 w-full flex flex-col justify-center'>
 			<div className='max-w-[3840px] mx-auto flex flex-wrap gap-x-3 gap-y-4 pl-3 pr-6 py-3'>
-				{videos?.pages.map((data: ResVideos) =>
+				{resVideos?.pages.map((data: ResVideos) =>
 					data.items?.map((item: ItemsEntity) => (
 						<VideoThumb
 							key={item.id}

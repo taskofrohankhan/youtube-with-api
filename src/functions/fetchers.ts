@@ -1,6 +1,6 @@
 import { axiosAPI } from '@/libs/api.axios'
 
-export const homeVideos = async ({
+export const videos = async ({
 	pageParam,
 }: {
 	pageParam: string | undefined
@@ -20,7 +20,7 @@ export const homeVideos = async ({
 	return data.data
 }
 
-export const channelAvatar = async (channelId: string) => {
+export const channel = async (channelId: string) => {
 	const data = await axiosAPI({
 		method: 'GET',
 		url: `/channels`,

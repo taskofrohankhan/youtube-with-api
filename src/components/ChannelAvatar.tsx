@@ -2,7 +2,7 @@
 
 import { baseURL } from '@/constants/baseURL'
 import { CHANNEL_AVATAR } from '@/constants/queryKeys'
-import { channelAvatar } from '@/functions/fetchers'
+import { channel } from '@/functions/fetchers'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,9 +14,9 @@ interface ChannelAvatarProps {
 const ChannelAvatar: React.FunctionComponent<ChannelAvatarProps> = ({
 	channelId,
 }) => {
-	const { data: channel } = useQuery({
+	const { data: resChannel } = useQuery({
 		queryKey: [CHANNEL_AVATAR, channelId],
-		queryFn: () => channelAvatar(channelId),
+		queryFn: () => channel(channelId),
 	})
 
 	return (
@@ -24,7 +24,7 @@ const ChannelAvatar: React.FunctionComponent<ChannelAvatarProps> = ({
 			<Link href={baseURL + `/c/${channelId}`}>
 				<div className='rounded-full overflow-clip w-9 h-9 relative'>
 					<Image
-						src={channel?.data.items[0].snippet.thumbnails.high.url}
+						src={resChannel?.data.items[0].snippet.thumbnails.high.url}
 						alt={'Profile picture'}
 						fill={true}
 						sizes={'36'}
