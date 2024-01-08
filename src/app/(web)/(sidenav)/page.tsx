@@ -4,6 +4,7 @@ import { VideoThumb } from '@/components/VideoThumb'
 import { baseURL } from '@/constants/baseURL'
 import { HOME_VIDEOS } from '@/constants/queryKeys'
 import { homeVideos } from '@/functions/fetchers'
+import { Spinner } from '@/libs/spinner.react-spinners'
 import { ItemsEntity, ResVideos } from '@/types/ResVideos'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
@@ -29,7 +30,7 @@ export default function Home() {
 		if (inView) {
 			fetchNextPage()
 		}
-	}, [inView, fetchNextPage])
+	}, [inView, fetchNextPage, hasNextPage])
 
 	return (
 		<main className='md:ml-60 w-full flex flex-col justify-center'>
@@ -52,19 +53,13 @@ export default function Home() {
 				)}
 			</div>
 			<div className='flex flex-col justify-center'>
-				<button
+				<div
 					ref={ref}
-					title='Load More'
-					type='button'
-					onClick={() => {
-						fetchNextPage()
-					}}>
-					{isFetchingNextPage
-						? 'Loading More'
-						: hasNextPage
-						? 'Load Newer'
-						: 'Nothing to load'}
-				</button>
+					className={`${
+						(isFetchingNextPage || hasNextPage) && 'w-10 h-10'
+					} mx-auto`}>
+					<Spinner />
+				</div>
 			</div>
 		</main>
 	)
