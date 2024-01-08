@@ -20,10 +20,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<ReactQuery>
-					<Header />
-					{children}
-				</ReactQuery>
+				<ReactQuery>{children}</ReactQuery>
 			</body>
 		</html>
 	)
