@@ -1,4 +1,4 @@
-export interface ResChannels {
+export interface ResChannel {
 	kind: string
 	etag: string
 	pageInfo: PageInfo

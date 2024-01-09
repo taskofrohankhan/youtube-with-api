@@ -30,5 +30,5 @@ export const channel = async (channelId: string) => {
 		},
 	})
 
-	return data
+	return data.data
 }

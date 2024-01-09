@@ -1,3 +1,3 @@
 export default function Subscriptions() {
-	return <main>Subscription</main>
+	return <div>Subscription</div>
 }

@@ -3,14 +3,23 @@
 import { useEffect, useState } from 'react'
 import { MoonLoader } from 'react-spinners'
 
-export const Spinner: React.FunctionComponent = () => {
+interface SpinnerProps {
+	loadingState: boolean
+}
+
+export const Spinner: React.FunctionComponent<SpinnerProps> = ({
+	loadingState,
+}) => {
 	const [loading, setLoading] = useState(false)
 	useEffect(() => {
 		setLoading(true)
-		setTimeout(() => {
-			setLoading(false)
-		}, 5000)
-	}, [])
+
+		if (loadingState) {
+			setTimeout(() => {
+				setLoading(false)
+			}, 5000)
+		}
+	}, [loadingState])
 
 	return (
 		<>

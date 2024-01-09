@@ -4,4 +4,5 @@ export const VIDEO_KEYS = {
 
 export const CHANNEL_KEYS = {
 	VIDEO_CARD_AVATAR: 'CHANNEL',
+	CHANNEL_INFO: 'CHANNEL',
 }

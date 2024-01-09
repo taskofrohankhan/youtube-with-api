@@ -2,9 +2,9 @@ import { Header } from '@/interfaces/Header'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className='w-full'>
+		<main className='w-full'>
 			<Header />
 			{children}
-		</div>
+		</main>
 	)
 }

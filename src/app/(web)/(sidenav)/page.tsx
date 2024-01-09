@@ -11,8 +11,8 @@ import { useInView } from 'react-intersection-observer'
 
 export default function Home() {
 	const { ref, inView } = useInView()
-
 	const {
+		isLoading,
 		data: resVideos,
 		fetchNextPage,
 		isFetchingNextPage,
@@ -32,7 +32,7 @@ export default function Home() {
 	}, [inView, fetchNextPage, hasNextPage])
 
 	return (
-		<main className='md:ml-60 w-full flex flex-col justify-center'>
+		<div className='md:ml-60 w-full flex flex-col justify-center'>
 			<div className='max-w-[3840px] mx-auto flex flex-wrap gap-x-3 gap-y-4 pl-3 pr-6 py-3'>
 				{resVideos?.pages.map((data: ResVideos) =>
 					data.items?.map((item: ItemsEntity) => (
@@ -54,11 +54,11 @@ export default function Home() {
 				<div
 					ref={ref}
 					className={`${
-						(isFetchingNextPage || hasNextPage) && 'w-10 h-10'
+						(isLoading || isFetchingNextPage || hasNextPage) && 'w-10 h-10'
 					} mx-auto`}>
-					<Spinner />
+					<Spinner loadingState={isLoading} />
 				</div>
 			</div>
-		</main>
+		</div>
 	)
 }
