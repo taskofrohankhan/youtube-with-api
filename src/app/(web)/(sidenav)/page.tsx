@@ -1,7 +1,7 @@
 'use client'
 
 import { VideoCard } from '@/components/Video/VideoCard'
-import { HOME_VIDEOS } from '@/constants/queryKeys'
+import { VIDEO_KEYS } from '@/constants/queryKeys'
 import { videos } from '@/functions/fetchers'
 import { Spinner } from '@/libs/spinner.react-spinners'
 import { ItemsEntity, ResVideos } from '@/types/ResVideos'
@@ -18,7 +18,7 @@ export default function Home() {
 		isFetchingNextPage,
 		hasNextPage,
 	} = useInfiniteQuery({
-		queryKey: [HOME_VIDEOS],
+		queryKey: [VIDEO_KEYS.HOME_VIDEOS],
 		queryFn: videos,
 		initialPageParam: undefined,
 		getPreviousPageParam: (firstPage) => firstPage.prevPageToken ?? undefined,

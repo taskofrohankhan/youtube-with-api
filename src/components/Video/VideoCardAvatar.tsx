@@ -1,7 +1,7 @@
 'use client'
 
 import { BASE_URL } from '@/constants/urls'
-import { VIDEO_CARD_AVATAR } from '@/constants/queryKeys'
+import { CHANNEL_KEYS } from '@/constants/queryKeys'
 import { channel } from '@/functions/fetchers'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
@@ -16,7 +16,7 @@ export const VideoCardAvatar: React.FunctionComponent<VideoCardAvatarProps> = ({
 	channelId,
 }) => {
 	const { data: resChannel } = useQuery({
-		queryKey: [VIDEO_CARD_AVATAR, channelId],
+		queryKey: [CHANNEL_KEYS.VIDEO_CARD_AVATAR, channelId],
 		queryFn: () => channel(channelId),
 	})
 
