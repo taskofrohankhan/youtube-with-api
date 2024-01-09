@@ -1,10 +1,10 @@
 import { publishedDateConvertor } from '@/functions/convertors'
 
-interface DateDifferenceProps {
+interface PublishedDateDifferenceProps {
 	date: string
 }
 
-export const DateDifference: React.FunctionComponent<DateDifferenceProps> = ({
+export const PublishedDateDifference: React.FunctionComponent<PublishedDateDifferenceProps> = ({
 	date,
 }) => {
 	const dateDifference = publishedDateConvertor(date)

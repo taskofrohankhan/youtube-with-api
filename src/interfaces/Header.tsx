@@ -1,4 +1,4 @@
-import { NavBar } from './NavBar'
+import { NavBar } from '@/components/Header/NavBar'
 
 interface HeaderProps {}
 

@@ -5,9 +5,9 @@ import {
 	MdVideoCall,
 	MdNotificationsNone,
 } from 'react-icons/md'
-import { Logo } from '@/components/Logo'
-import { SearchBar } from '@/components/SearchBar'
-import { NavButton } from '@/components/NavButton'
+import { Logo } from '@/components/Header/Logo'
+import { SearchBar } from '@/components/Header/SearchBar'
+import { NavButton } from '@/components/Header/NavButton'
 
 interface NavBarProps {}
 

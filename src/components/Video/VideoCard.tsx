@@ -1,42 +1,41 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import ChannelAvatar from './ChannelAvatar'
+import { VideoCardAvatar } from './VideoCardAvatar'
 import { durationConvertor } from '@/functions/convertors'
 import { statisticsConvertor } from '@/functions/convertors'
-import { DateDifference } from './DateDifference'
+import { PublishedDateDifference } from './PublishedDateDifference'
+import { BASE_URL } from '@/constants/urls'
 
-interface VideoThumbProps {
-	thumbnail: string
-	duration: string
+interface VideoCardProps {
+	videoId: string
+	videoTitle: string
+	videoDuration: string
+	videoThumbnail: string
+	videoPublishtionDate: string
+	videoViews: string
 	channelId: string
-	title: string
-	videoPath: string
-	channel: string
-	channelPath: string
-	views: string
-	date: string
+	channelTitle: string
 }
 
-export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
-	thumbnail,
-	duration,
+export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
+	videoId,
+	videoTitle,
+	videoDuration,
+	videoThumbnail,
+	videoPublishtionDate,
+	videoViews,
 	channelId,
-	title,
-	videoPath,
-	channel,
-	channelPath,
-	views,
-	date,
+	channelTitle,
 }) => {
-	const convertedDuration = durationConvertor(duration)
-	const convertedViews = statisticsConvertor(views)
+	const convertedDuration = durationConvertor(videoDuration)
+	const convertedViews = statisticsConvertor(videoViews)
 	return (
 		<div className='flex flex-col flex-1 basis-auto md:basis-80 md:max-w-[380px] h-auto gap-2 overflow-hidden'>
 			<div className='relative'>
-				<Link href={videoPath}>
+				<Link href={`${BASE_URL}/watch?v=${videoId}`}>
 					<div className='rounded-xl overflow-clip'>
 						<Image
-							src={thumbnail}
+							src={videoThumbnail}
 							width={1280}
 							height={720}
 							alt={'Thumbnail'}
@@ -45,31 +44,34 @@ export const VideoThumb: React.FunctionComponent<VideoThumbProps> = ({
 						/>
 					</div>
 				</Link>
+
 				<div className='absolute right-2 bottom-2 bg-slate-950 text-white text-xs px-1 rounded'>
 					{convertedDuration}
 				</div>
 			</div>
 
 			<div className='flex gap-2'>
-				<ChannelAvatar channelId={channelId} />
+				<VideoCardAvatar channelId={channelId} />
 
 				<div className='flex flex-col text-gray-500'>
 					<div>
 						<Link
-							href={videoPath}
+							href={`${BASE_URL}/watch?v=${channelId}`}
 							className='text-base font-bold line-clamp-2 whitespace-normal text-slate-800'>
-							{title}
+							{videoTitle}
 						</Link>
 					</div>
 
 					<div className='flex flex-col'>
 						<div>
-							<Link href={channelPath}>{channel}</Link>
+							<Link href={`${BASE_URL}/channel/${channelId}`}>
+								{channelTitle}
+							</Link>
 						</div>
 
 						<div className='flex gap-2'>
 							<span>{convertedViews} Views.</span>
-							<DateDifference date={date} />
+							<PublishedDateDifference date={videoPublishtionDate} />
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,6 @@
 'use client'
 
-import { VideoThumb } from '@/components/VideoThumb'
-import { baseURL } from '@/constants/baseURL'
+import { VideoCard } from '@/components/Video/VideoCard'
 import { HOME_VIDEOS } from '@/constants/queryKeys'
 import { videos } from '@/functions/fetchers'
 import { Spinner } from '@/libs/spinner.react-spinners'
@@ -37,17 +36,16 @@ export default function Home() {
 			<div className='max-w-[3840px] mx-auto flex flex-wrap gap-x-3 gap-y-4 pl-3 pr-6 py-3'>
 				{resVideos?.pages.map((data: ResVideos) =>
 					data.items?.map((item: ItemsEntity) => (
-						<VideoThumb
+						<VideoCard
 							key={item.id}
-							thumbnail={item.snippet.thumbnails.maxres?.url}
-							duration={item.contentDetails.duration}
+							videoId={item.id}
+							videoTitle={item.snippet.title}
+							videoDuration={item.contentDetails.duration}
+							videoThumbnail={item.snippet.thumbnails.maxres?.url}
+							videoPublishtionDate={item.snippet.publishedAt}
+							videoViews={item.statistics.viewCount}
 							channelId={item.snippet.channelId}
-							title={item.snippet.title}
-							videoPath={`${baseURL}/watch?v=${item.id}`}
-							channel={item.snippet.channelTitle}
-							channelPath={`${baseURL}/c/${item.snippet.channelId}`}
-							views={item.statistics.viewCount}
-							date={item.snippet.publishedAt}
+							channelTitle={item.snippet.channelTitle}
 						/>
 					)),
 				)}

@@ -1,27 +1,27 @@
 'use client'
 
-import { baseURL } from '@/constants/baseURL'
-import { CHANNEL_AVATAR } from '@/constants/queryKeys'
+import { BASE_URL } from '@/constants/urls'
+import { VIDEO_CARD_AVATAR } from '@/constants/queryKeys'
 import { channel } from '@/functions/fetchers'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 
-interface ChannelAvatarProps {
+interface VideoCardAvatarProps {
 	channelId: string
 }
 
-const ChannelAvatar: React.FunctionComponent<ChannelAvatarProps> = ({
+export const VideoCardAvatar: React.FunctionComponent<VideoCardAvatarProps> = ({
 	channelId,
 }) => {
 	const { data: resChannel } = useQuery({
-		queryKey: [CHANNEL_AVATAR, channelId],
+		queryKey: [VIDEO_CARD_AVATAR, channelId],
 		queryFn: () => channel(channelId),
 	})
 
 	return (
 		<div>
-			<Link href={baseURL + `/c/${channelId}`}>
+			<Link href={`${BASE_URL}/channel/${channelId}`}>
 				<div className='rounded-full overflow-clip w-9 h-9 relative'>
 					<Image
 						src={resChannel?.data.items[0].snippet.thumbnails.high.url}
@@ -34,5 +34,3 @@ const ChannelAvatar: React.FunctionComponent<ChannelAvatarProps> = ({
 		</div>
 	)
 }
-
-export default ChannelAvatar
