@@ -1,15 +1,69 @@
 export const durationConvertor = (duration: string) => {
-	const convertedDuration = duration?.toLowerCase()
+	/*
+	Expected all duration formats
 
-	if (!convertedDuration?.includes('m')) {
-		return convertedDuration?.replace('pt', '')
+	'PT10H51M52S'
+
+	'PT10H51M5S'
+	'PT10H5M52S'
+	'PT1H51M52S'
+
+	'PT1H1M5S'
+
+	'PT1M5S'
+	'PT1H5S'
+	'PT1H5M'
+
+	'PT1M54S'
+	'PT1H54S'
+	'PT1H54M'
+
+	'PT10M5S'
+	'PT10H5S'
+	'PT10H5M'
+
+	'PT10M54S'
+	'PT10H54S'
+	'PT10H54M'
+
+	'PT1H'
+	'PT1M'
+	'PT1S'
+	*/
+
+	let convertedDuration = duration
+
+	if (/[H]/g.test(convertedDuration)) {
+		if (!/[M]/g.test(convertedDuration)) {
+			convertedDuration =
+				convertedDuration.slice(0, convertedDuration.search(/[H]/g) + 1) +
+				'00M' +
+				convertedDuration.slice(convertedDuration.search(/[H]/g) + 1)
+		}
+		if (/\D\d([M])/g.test(convertedDuration)) {
+			convertedDuration =
+				convertedDuration.slice(0, convertedDuration.search(/\D\d([M])/g) + 1) +
+				'0' +
+				convertedDuration.slice(convertedDuration.search(/\D\d([M])/g) + 1)
+		}
 	}
 
-	return convertedDuration
-		?.replace('pt', '')
-		?.replace('h', ':')
-		?.replace('m', ':')
-		?.replace('s', '')
+	if (!/[S]/g.test(convertedDuration)) {
+		convertedDuration = convertedDuration + '00S'
+	}
+
+	if (/\D\d[S]/g.test(convertedDuration)) {
+		convertedDuration =
+			convertedDuration.slice(0, convertedDuration.search(/\D\d[S]/g) + 1) +
+			'0' +
+			convertedDuration.slice(convertedDuration.search(/\D\d[S]/g) + 1)
+	}
+
+	if (!/[H]/g.test(convertedDuration) && !/[M]/g.test(convertedDuration)) {
+		convertedDuration = convertedDuration.replace('PT', '0M')
+	}
+
+	return convertedDuration.replace(/[PTS]/g, '').replace(/([H]|[M])/g, ':')
 }
 
 export const statisticsConvertor = (statistics: string) => {
