@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { VideoCardAvatar } from './VideoCardAvatar'
-import { durationConvertor } from '@/functions/convertors'
-import { statisticsConvertor } from '@/functions/convertors'
-import { PublishedDateDifference } from './PublishedDateDifference'
 import { BASE_URL } from '@/constants/urls'
+import { DurationConvertor } from '../convertors/DurationConvertor'
+import { PublishedAtConvertor } from '../convertors/PublishAtConvertor'
+import { StatisticConvertor } from '../convertors/StatisticConvertor'
 
 interface VideoCardProps {
 	videoId: string
@@ -27,8 +27,6 @@ export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
 	channelId,
 	channelTitle,
 }) => {
-	const convertedDuration = durationConvertor(videoDuration)
-	const convertedViews = statisticsConvertor(videoViews)
 	return (
 		<div className='flex flex-col flex-1 basis-auto md:basis-80 md:max-w-[380px] h-auto gap-2 overflow-hidden'>
 			<div className='relative'>
@@ -46,7 +44,7 @@ export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
 				</Link>
 
 				<div className='absolute right-2 bottom-2 bg-slate-950 text-white text-xs px-1 rounded'>
-					{convertedDuration}
+					<DurationConvertor duration={videoDuration} />
 				</div>
 			</div>
 
@@ -70,8 +68,13 @@ export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
 						</div>
 
 						<div className='flex gap-2'>
-							<span>{convertedViews} Views.</span>
-							<PublishedDateDifference date={videoPublishtionDate} />
+							<span>
+								<StatisticConvertor statistic={videoViews} /> Views
+							</span>
+							<span>‧</span>
+							<span>
+								<PublishedAtConvertor date={videoPublishtionDate} /> ago
+							</span>
 						</div>
 					</div>
 				</div>

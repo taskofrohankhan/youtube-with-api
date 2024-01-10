@@ -1,5 +1,6 @@
 'use client'
 
+import { StatisticConvertor } from '@/components/convertors/StatisticConvertor'
 import { CHANNEL_KEYS } from '@/constants/queryKeys'
 import { channel } from '@/functions/fetchers'
 import { Spinner } from '@/libs/spinner.react-spinners'
@@ -16,7 +17,11 @@ interface ChannelProps {
 export default function Channel({ params }: ChannelProps) {
 	const { channelId } = params
 	const { isLoading, data: resChannel } = useQuery({
-		queryKey: [CHANNEL_KEYS.CHANNEL_INFO, channelId],
+		queryKey: [
+			CHANNEL_KEYS.CHANNEL_INFO,
+			CHANNEL_KEYS.VIDEO_CARD_AVATAR,
+			channelId,
+		],
 		queryFn: () =>
 			channel({ part: 'brandingSettings, snippet, statistics', channelId }),
 	})
@@ -26,10 +31,8 @@ export default function Channel({ params }: ChannelProps) {
 			{!isLoading ? (
 				<>
 					{resChannel?.items.map((item: ItemsEntity) => (
-						<div
-							key={item.id}
-							className='border-2 border-red-500 w-full flex flex-col pl-3 pr-6'>
-							{/* <div className='w-full h-44 relative rounded-xl overflow-hidden'>
+						<div key={item.id} className='w-full flex flex-col pl-3 pr-6'>
+							{/* <div className='w-full h-44 relative rounded-xl overflow-clip'>
 								<Image
 									className='object-cover'
 									src={item.brandingSettings.image.bannerExternalUrl}
@@ -38,6 +41,38 @@ export default function Channel({ params }: ChannelProps) {
 									priority={true}
 								/>
 							</div> */}
+							<div className='w-full flex gap-x-6 mt-8'>
+								<div className='w-20 h-20 md:w-40 md:h-40 relative rounded-full overflow-clip'>
+									<Image
+										className={'object-cover'}
+										src={item.snippet.thumbnails.high.url}
+										fill={true}
+										alt={'Profile picture'}
+									/>
+								</div>
+								<div className='flex flex-col justify-start gap-y-2'>
+									<div>
+										<h2 className='text-4xl font-bold'>{item.snippet.title}</h2>
+									</div>
+									<div className='flex gap-x-2 text-sm text-slate-500'>
+										<h6>{item.snippet.customUrl}</h6>
+										<span>‧</span>
+										<h5>
+											<StatisticConvertor
+												statistic={item.statistics.subscriberCount}
+											/>{' '}
+											subscribers
+										</h5>
+										<span>‧</span>
+										<h5>
+											<StatisticConvertor
+												statistic={item.statistics.videoCount}
+											/>{' '}
+											videos
+										</h5>
+									</div>
+								</div>
+							</div>
 						</div>
 					))}
 				</>

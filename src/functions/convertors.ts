@@ -66,50 +66,82 @@ export const durationConvertor = (duration: string) => {
 	return convertedDuration.replace(/[PTS]/g, '').replace(/([H]|[M])/g, ':')
 }
 
-export const statisticsConvertor = (statistics: string) => {
-	return Number(statistics).toLocaleString('en-US')
+export const statisticConvertor = (statistics: string) => {
+	const number = Number(statistics)
+	let formattedNumber
+	const units = [
+		{ suffix: 'T', startOfSuffix: 1e12 },
+		{ suffix: 'B', startOfSuffix: 1e9 },
+		{ suffix: 'M', startOfSuffix: 1e6 },
+		{ suffix: 'K', startOfSuffix: 1e3 },
+		{ suffix: '', startOfSuffix: 1 },
+	]
+
+	const unitFound = units.find((unit) => number >= unit.startOfSuffix)
+
+	if (unitFound) {
+		formattedNumber =
+			(!(unitFound.suffix === 'K' || unitFound.suffix === '')
+				? (number / unitFound.startOfSuffix).toFixed(2)
+				: (number / unitFound.startOfSuffix).toFixed(0)) + unitFound.suffix
+	}
+
+	return formattedNumber
 }
 
-export const publishedDateConvertor = (date: string) => {
+export const publishedAtConvertor = (date: string) => {
 	const timePublished = Date.parse(date)
 	const timeNow = Date.now()
 	const timeGone = timeNow - timePublished
+	let formattedTimeGone
 
-	const forYear = 365 * 86400 * 1000
-	const forMonth = 30 * 86400 * 1000
-	const forWeek = 7 * 86400 * 1000
-	const forDay = 86400 * 1000
-	const forHour = 3600 * 1000
-	const forMinute = 60 * 1000
-	const forSecond = 10000
+	const units = [
+		{
+			suffixPlural: 'years',
+			suffixSingular: 'year',
+			startOfSuffix: 365 * 86400 * 1000,
+		},
+		{
+			suffixPlural: 'months',
+			suffixSingular: 'month',
+			startOfSuffix: 30 * 86400 * 1000,
+		},
+		{
+			suffixPlural: 'weeks',
+			suffixSingular: 'week',
+			startOfSuffix: 7 * 86400 * 1000,
+		},
+		{
+			suffixPlural: 'days',
+			suffixSingular: 'day',
+			startOfSuffix: 86400 * 1000,
+		},
+		{
+			suffixPlural: 'hours',
+			suffixSingular: 'hour',
+			startOfSuffix: 3600 * 1000,
+		},
+		{
+			suffixPlural: 'minutes',
+			suffixSingular: 'minute',
+			startOfSuffix: 60 * 1000,
+		},
+		{
+			suffixPlural: 'seconds',
+			suffixSingular: 'second',
+			startOfSuffix: 1000,
+		},
+	]
 
-	if (timeGone / forYear >= 1) {
-		return `${Math.floor(timeGone / forYear)} ${
-			timeGone / forYear > 1 ? 'years' : 'year'
-		}`
-	} else if (timeGone / forMonth >= 1) {
-		return `${Math.floor(timeGone / forMonth)} ${
-			timeGone / forMonth > 1 ? 'months' : 'month'
-		}`
-	} else if (timeGone / forWeek >= 1) {
-		return `${Math.floor(timeGone / forWeek)} ${
-			timeGone / forWeek > 1 ? 'weeks' : 'week'
-		}`
-	} else if (timeGone / forDay >= 1) {
-		return `${Math.floor(timeGone / forDay)} ${
-			timeGone / forDay > 1 ? 'days' : 'day'
-		}`
-	} else if (timeGone / forHour >= 1) {
-		return `${Math.floor(timeGone / forHour)} ${
-			timeGone / forHour > 1 ? 'hours' : 'hour'
-		}`
-	} else if (timeGone / forMinute >= 1) {
-		return `${Math.floor(timeGone / forMinute)} ${
-			timeGone / forMinute > 1 ? 'minutes' : 'minute'
-		}`
-	} else {
-		return `${Math.floor(timeGone / forSecond)} ${
-			timeGone / forSecond > 1 ? 'seconds' : 'second'
-		}`
+	const unitFound = units.find((unit) => timeGone >= unit.startOfSuffix)
+
+	if (unitFound) {
+		const divTimeGone = (timeGone / unitFound.startOfSuffix).toFixed(0)
+		formattedTimeGone =
+			Number(divTimeGone) > 1
+				? `${divTimeGone} ${unitFound.suffixPlural}`
+				: `${divTimeGone} ${unitFound.suffixSingular}`
 	}
+
+	return formattedTimeGone
 }
