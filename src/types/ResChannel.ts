@@ -13,6 +13,8 @@ export interface ItemsEntity {
 	etag: string
 	id: string
 	snippet: Snippet
+	statistics: Statistics
+	brandingSettings: BrandingSettings
 }
 export interface Snippet {
 	title: string
@@ -36,4 +38,24 @@ export interface DefaultOrMediumOrHigh {
 export interface Localized {
 	title: string
 	description: string
+}
+export interface Statistics {
+	viewCount: string
+	subscriberCount: string
+	hiddenSubscriberCount: boolean
+	videoCount: string
+}
+export interface BrandingSettings {
+	channel: Channel
+	image: Image
+}
+export interface Channel {
+	title: string
+	description: string
+	keywords: string
+	unsubscribedTrailer: string
+	country: string
+}
+export interface Image {
+	bannerExternalUrl: string
 }

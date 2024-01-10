@@ -17,17 +17,21 @@ export const VideoCardAvatar: React.FunctionComponent<VideoCardAvatarProps> = ({
 }) => {
 	const { data: resChannel } = useQuery({
 		queryKey: [CHANNEL_KEYS.VIDEO_CARD_AVATAR, channelId],
-		queryFn: () => channel(channelId),
+		queryFn: () => channel({ part: 'snippet', channelId }),
+		select: (resChannel) => {
+			return resChannel.items.map(
+				(item: ItemsEntity) => item.snippet.thumbnails.high.url,
+			)
+		},
 	})
-
 	return (
 		<div>
 			<Link href={`${BASE_URL}/channel/${channelId}`}>
 				<div className='rounded-full overflow-clip w-9 h-9 relative'>
-					{resChannel?.items.map((item: ItemsEntity) => (
+					{resChannel?.map((url: string) => (
 						<Image
-							key={item.id}
-							src={item.snippet.thumbnails.high.url}
+							key={url}
+							src={url}
 							alt={'Profile picture'}
 							fill={true}
 							sizes={'36'}

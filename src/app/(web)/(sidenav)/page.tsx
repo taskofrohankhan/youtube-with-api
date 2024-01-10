@@ -12,7 +12,6 @@ import { useInView } from 'react-intersection-observer'
 export default function Home() {
 	const { ref, inView } = useInView()
 	const {
-		isLoading,
 		data: resVideos,
 		fetchNextPage,
 		isFetchingNextPage,
@@ -54,9 +53,9 @@ export default function Home() {
 				<div
 					ref={ref}
 					className={`${
-						(isLoading || isFetchingNextPage || hasNextPage) && 'w-10 h-10'
+						(isFetchingNextPage || hasNextPage) && 'w-10 h-10'
 					} mx-auto`}>
-					<Spinner loadingState={isLoading} />
+					<Spinner loadingState={isFetchingNextPage || hasNextPage} />
 				</div>
 			</div>
 		</div>

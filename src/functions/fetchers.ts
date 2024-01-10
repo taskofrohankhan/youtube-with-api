@@ -20,12 +20,18 @@ export const videos = async ({
 	return data.data
 }
 
-export const channel = async (channelId: string) => {
+export const channel = async ({
+	part,
+	channelId,
+}: {
+	part: string
+	channelId: string
+}) => {
 	const data = await axiosAPI({
 		method: 'GET',
 		url: `/channels`,
 		params: {
-			part: 'snippet',
+			part: part,
 			id: channelId,
 		},
 	})
