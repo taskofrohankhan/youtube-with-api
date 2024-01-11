@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { VideoCardAvatar } from './VideoCardAvatar'
-import { BASE_URL } from '@/constants/urls'
 import { DurationConvertor } from '../convertors/DurationConvertor'
 import { PublishedAtConvertor } from '../convertors/PublishAtConvertor'
 import { StatisticConvertor } from '../convertors/StatisticConvertor'
@@ -15,6 +14,7 @@ interface VideoCardProps {
 	videoViews: string
 	channelId: string
 	channelTitle: string
+	showAvatar: boolean
 }
 
 export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
@@ -26,11 +26,12 @@ export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
 	videoViews,
 	channelId,
 	channelTitle,
+	showAvatar,
 }) => {
 	return (
 		<div className='flex flex-col flex-1 basis-auto md:basis-80 md:max-w-[380px] h-auto gap-2 overflow-hidden'>
 			<div className='relative'>
-				<Link href={`${BASE_URL}/watch?v=${videoId}`}>
+				<Link href={`/watch?v=${videoId}`}>
 					<div className='rounded-xl overflow-clip'>
 						<Image
 							src={videoThumbnail}
@@ -48,23 +49,24 @@ export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
 				</div>
 			</div>
 
-			<div className='flex gap-2'>
-				<VideoCardAvatar channelId={channelId} />
-
+			<div className='flex gap-2 px-2'>
+				{showAvatar && <VideoCardAvatar channelId={channelId} />}
 				<div className='flex flex-col text-gray-500'>
 					<div>
 						<Link
-							href={`${BASE_URL}/watch?v=${channelId}`}
-							className='text-base font-bold line-clamp-2 whitespace-normal text-slate-800'>
+							href={`/watch?v=${channelId}`}
+							className={`text-base font-bold line-clamp-2 whitespace-normal text-youtube-black w-full ${
+								showAvatar
+									? 'md:w-[260px] md:max-w-80'
+									: 'md:w-[304px] md:max-w-[364px]'
+							}`}>
 							{videoTitle}
 						</Link>
 					</div>
 
 					<div className='flex flex-col'>
 						<div>
-							<Link href={`${BASE_URL}/channel/${channelId}`}>
-								{channelTitle}
-							</Link>
+							<Link href={`/channel/${channelId}`}>{channelTitle}</Link>
 						</div>
 
 						<div className='flex gap-2'>

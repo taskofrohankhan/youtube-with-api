@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply m-0 p-0 box-border w-full relative text-youtube-black scrollbar
+    @apply m-0 p-0 box-border w-full relative text-youtube-black bg-white scrollbar
   }
 }
 

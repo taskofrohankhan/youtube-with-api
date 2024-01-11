@@ -2,8 +2,8 @@
 
 import { Button } from '@/components/Base/Button'
 import { StatisticConvertor } from '@/components/convertors/StatisticConvertor'
-import { CHANNEL_KEYS } from '@/constants/queryKeys'
-import { channel } from '@/functions/fetchers'
+import { CHANNELS_KEYS } from '@/constants/queryKeys'
+import { channels } from '@/functions/fetchers'
 import { Spinner } from '@/libs/spinner.react-spinners'
 import { ItemsEntity } from '@/types/ResChannel'
 import { useQuery } from '@tanstack/react-query'
@@ -14,33 +14,35 @@ interface ChannelInfoProps {
 	channelId: string
 }
 
-const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
+export const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 	channelId,
 }) => {
 	const { isLoading, data: resChannel } = useQuery({
 		queryKey: [
-			CHANNEL_KEYS.CHANNEL_INFO,
-			CHANNEL_KEYS.VIDEO_CARD_AVATAR,
+			CHANNELS_KEYS.CHANNEL_INFO,
+			CHANNELS_KEYS.VIDEO_CARD_AVATAR,
 			channelId,
 		],
 		queryFn: () =>
-			channel({ part: 'brandingSettings, snippet, statistics', channelId }),
+			channels({ part: 'brandingSettings, snippet, statistics', channelId }),
 	})
 	return (
 		<>
 			{!isLoading ? (
 				<>
 					{resChannel?.items.map((item: ItemsEntity) => (
-						<div key={item.id} className='w-full flex flex-col pl-3 pr-6'>
-							{/* <div className='w-full h-44 relative rounded-xl overflow-clip'>
-								<Image
-									className='object-cover'
-									src={item.brandingSettings.image.bannerExternalUrl}
-									fill={true}
-									alt={'Coverart'}
-									priority={true}
-								/>
-							</div> */}
+						<div key={item.id} className='w-full flex flex-col'>
+							{item.brandingSettings.image?.bannerExternalUrl && (
+								<div className='w-full h-44 relative rounded-xl overflow-clip'>
+									<Image
+										className='object-cover'
+										src={item.brandingSettings.image.bannerExternalUrl}
+										fill={true}
+										alt={'Coverart'}
+										priority={true}
+									/>
+								</div>
+							)}
 							<div className='w-full flex gap-x-6 mt-8'>
 								<div>
 									<div className='w-20 h-20 md:w-40 md:h-40 relative rounded-full overflow-clip'>
@@ -48,6 +50,7 @@ const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 											className={'object-cover'}
 											src={item.snippet.thumbnails.high.url}
 											fill={true}
+											sizes={'80'}
 											alt={'Profile picture'}
 										/>
 									</div>
@@ -56,7 +59,7 @@ const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 									<div>
 										<h2 className='text-4xl font-bold'>{item.snippet.title}</h2>
 									</div>
-									<div className='flex gap-x-2 text-sm text-slate-500'>
+									<div className='flex gap-x-2 text-sm text-gray-500'>
 										<h6>{item.snippet.customUrl}</h6>
 										<span>‧</span>
 										<h5>
@@ -73,8 +76,10 @@ const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 											videos
 										</h5>
 									</div>
-									<div className='flex gap-x-1 items-center text-slate-500'>
-										<p className='text-sm'>{item.snippet.description}</p>
+									<div className='flex gap-x-1 items-center text-gray-500'>
+										<p className='text-sm text-wrap line-clamp-1 w-[400px]'>
+											{item.snippet.description}
+										</p>
 										<span>
 											<MdOutlineKeyboardArrowRight size={16} />
 										</span>
@@ -99,5 +104,3 @@ const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 		</>
 	)
 }
-
-export default ChannelInfo

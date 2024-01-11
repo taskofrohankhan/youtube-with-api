@@ -10,7 +10,6 @@ import {
 	MdOutlineSubscriptions,
 	MdHistory,
 	MdOutlineHistory,
-	MdPersonOutline,
 } from 'react-icons/md'
 
 interface SideBarProps {}
