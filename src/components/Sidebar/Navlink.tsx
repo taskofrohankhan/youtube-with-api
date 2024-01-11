@@ -16,8 +16,8 @@ export const Navlink: React.FunctionComponent<NavlinkProps> = ({
 	return (
 		<Link
 			className={`${
-				pathname === path && 'bg-gray-100 font-bold'
-			} px-1 h-10 flex items-center gap-4 hover:bg-gray-200 rounded-xl text-sm`}
+				pathname === path && 'bg-gray-200 font-bold'
+			} px-1 h-10 flex items-center gap-4 hover:bg-gray-300 rounded-xl text-sm`}
 			href={path}>
 			<i className='p-2'>{icon}</i>
 			{text}

@@ -7,7 +7,12 @@ const config: Config = {
 		'./src/interfaces/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				'youtube-red': '#FF0000',
+				'youtube-black': '#282828',
+			},
+		},
 	},
 	plugins: [],
 }
