@@ -57,24 +57,24 @@ export const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 								</div>
 								<div className='flex flex-col justify-start gap-y-3'>
 									<div>
-										<h2 className='text-4xl font-bold'>{item.snippet.title}</h2>
+										<h2>{item.snippet.title}</h2>
 									</div>
-									<div className='flex gap-x-2 text-sm text-gray-500'>
+									<div className='flex gap-x-2 text-gray-500'>
 										<h6>{item.snippet.customUrl}</h6>
 										<span>‧</span>
-										<h5>
+										<h6>
 											<StatisticConvertor
 												statistic={item.statistics.subscriberCount}
 											/>{' '}
 											subscribers
-										</h5>
+										</h6>
 										<span>‧</span>
-										<h5>
+										<h6>
 											<StatisticConvertor
 												statistic={item.statistics.videoCount}
 											/>{' '}
 											videos
-										</h5>
+										</h6>
 									</div>
 									<div className='flex gap-x-1 items-center text-gray-500'>
 										<p className='text-sm text-wrap line-clamp-1 w-[400px]'>

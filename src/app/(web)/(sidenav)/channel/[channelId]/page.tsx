@@ -1,8 +1,10 @@
 'use client'
 
+import { ChannelSectionSinglePlaylist } from '@/components/Channel/ChannelSectionSinglePlaylist'
 import { CHANNELS_KEYS } from '@/constants/queryKeys'
 import { channelSections } from '@/functions/fetchers'
 import { Spinner } from '@/libs/spinner.react-spinners'
+import { ItemsEntity } from '@/types/ResChannelSection'
 import { useQuery } from '@tanstack/react-query'
 
 interface ChannelProps {
@@ -17,17 +19,25 @@ export default function Channel({ params }: ChannelProps) {
 		queryFn: () => channelSections({ channelId: params.channelId }),
 	})
 
-	// console.log(resChannelSection)
-
 	return (
-		<div className='mt-5'>
+		<>
 			{!isLoading ? (
-				<div></div>
+				<>
+					{resChannelSection.items.map((item: ItemsEntity) => (
+						<div key={item.id} className='w-full'>
+							{item.snippet.type === 'singleplaylist' && (
+								<ChannelSectionSinglePlaylist
+									playlistId={item.contentDetails?.playlists?.[0]}
+								/>
+							)}
+						</div>
+					))}
+				</>
 			) : (
 				<div className={`${isLoading && 'w-10 h-10'} mx-auto`}>
 					<Spinner loadingState={isLoading} />
 				</div>
 			)}
-		</div>
+		</>
 	)
 }

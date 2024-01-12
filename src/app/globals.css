@@ -6,6 +6,30 @@
   body {
     @apply m-0 p-0 box-border w-full relative text-youtube-black bg-white scrollbar
   }
+
+  h1 {
+    @apply text-5xl font-bold
+  }
+
+  h2 {
+    @apply text-4xl font-bold
+  }
+
+  h3 {
+    @apply text-2xl font-bold
+  }
+
+  h4 {
+    @apply text-xl font-bold
+  }
+
+  h5 {
+    @apply text-base
+  }
+
+  h6 {
+    @apply text-sm
+  }
 }
 
 @layer components {

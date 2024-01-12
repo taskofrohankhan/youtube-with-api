@@ -24,6 +24,22 @@ export const videos = async ({
 	}
 }
 
+export const video = async ({ videoId }: { videoId: string }) => {
+	try {
+		const data = await axiosAPI({
+			method: 'GET',
+			url: '/videos',
+			params: {
+				part: 'snippet,contentDetails,statistics',
+				id: videoId,
+			},
+		})
+		return data.data
+	} catch (error) {
+		console.error(error)
+	}
+}
+
 export const channels = async ({
 	part,
 	channelId,
@@ -63,20 +79,17 @@ export const channelSections = async ({ channelId }: { channelId: string }) => {
 	}
 }
 
-export const channelSectionPlaylists = async ({
-	channelId,
+export const playlists = async ({
 	playlistId,
 }: {
-	channelId: string
-	playlistId: string[] | null | undefined
+	playlistId: string | undefined
 }) => {
 	try {
 		const data = await axiosAPI({
 			method: 'GET',
 			url: '/playlists',
 			params: {
-				part: 'contentDetails,id,snippet',
-				channelId: channelId,
+				part: 'contentDetails,snippet',
 				id: playlistId,
 			},
 		})
@@ -86,21 +99,38 @@ export const channelSectionPlaylists = async ({
 	}
 }
 
-export const channelSectionPlaylistItems = async ({
-	channelId,
+export const playlistItems = async ({
 	playlistId,
 }: {
-	channelId: string
-	playlistId: string[] | null | undefined
+	playlistId: string | undefined
 }) => {
 	try {
 		const data = await axiosAPI({
 			method: 'GET',
 			url: '/playlistItems',
 			params: {
-				part: 'contentDetails,id,snippet',
+				part: 'contentDetails,snippet',
+				playlistId: playlistId,
+			},
+		})
+		return data.data
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+export const searchForChannel = async ({
+	channelId,
+}: {
+	channelId: string
+}) => {
+	try {
+		const data = await axiosAPI({
+			method: 'GET',
+			url: '/search',
+			params: {
+				part: 'snippet',
 				channelId: channelId,
-				id: playlistId,
 			},
 		})
 		return data.data
