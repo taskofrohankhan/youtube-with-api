@@ -20,11 +20,11 @@ export default function Channel({ params }: ChannelProps) {
 	})
 
 	return (
-		<>
+		<div className='w-full'>
 			{!isLoading ? (
 				<>
 					{resChannelSection.items.map((item: ItemsEntity) => (
-						<div key={item.id} className='w-full'>
+						<div key={item.id}>
 							{item.snippet.type === 'singleplaylist' && (
 								<ChannelSectionSinglePlaylist
 									playlistId={item.contentDetails?.playlists?.[0]}
@@ -38,6 +38,6 @@ export default function Channel({ params }: ChannelProps) {
 					<Spinner loadingState={isLoading} />
 				</div>
 			)}
-		</>
+		</div>
 	)
 }

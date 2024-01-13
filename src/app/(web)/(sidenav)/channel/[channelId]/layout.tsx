@@ -9,10 +9,12 @@ export default function Layout({
 	children: React.ReactNode
 }) {
 	return (
-		<div className='md:ml-60 w-full pl-3 pr-6 flex flex-col justify-center'>
-			<ChannelInfo channelId={params.channelId} />
-			<ChannelNav channelId={params.channelId} />
-			{children}
+		<div className='w-full 4xl:pl-3 px-3 md:pl-[252px] md:pr-6'>
+			<div className='3xl:max-w-[1920px] 3xl:pl-0 3xl:pr-0 mx-auto'>
+				<ChannelInfo channelId={params.channelId} />
+				<ChannelNav channelId={params.channelId} />
+				{children}
+			</div>
 		</div>
 	)
 }

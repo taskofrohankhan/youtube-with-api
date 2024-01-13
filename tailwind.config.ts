@@ -12,6 +12,12 @@ const config: Config = {
 				'youtube-red': '#FF0000',
 				'youtube-black': '#282828',
 			},
+			screens: {
+				'3xl': '1920px',
+				'4xl': '2560px',
+				'5xl': '2880px',
+				'6xl': '3840px',
+			},
 		},
 	},
 	plugins: [],

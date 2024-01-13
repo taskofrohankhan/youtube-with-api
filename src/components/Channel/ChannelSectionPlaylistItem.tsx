@@ -14,8 +14,8 @@ export const ChannelSectionPlaylistItem: React.FunctionComponent<
 	ChannelSectionPlaylistItemProps
 > = ({ videoId }) => {
 	const { isLoading, data: resVideo } = useQuery({
-		queryKey: [VIDEOS_KEYS.VIDEO_BY_ID, { videoId: videoId }],
-		queryFn: () => video({ videoId }),
+		queryKey: [VIDEOS_KEYS.VIDEO_BY_ID, videoId],
+		queryFn: () => video({ videoId: videoId }),
 	})
 
 	return (

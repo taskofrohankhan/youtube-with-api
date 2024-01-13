@@ -1,10 +1,5 @@
 import Link from 'next/link'
-import {
-	MdMenu,
-	MdMic,
-	MdVideoCall,
-	MdNotificationsNone,
-} from 'react-icons/md'
+import { MdMenu, MdVideoCall, MdNotificationsNone } from 'react-icons/md'
 import { Logo } from '@/components/Header/Logo'
 import { SearchBar } from '@/components/Header/SearchBar'
 import { Button } from '@/components/Base/Button'
@@ -22,12 +17,7 @@ export const NavBar: React.FunctionComponent<NavBarProps> = () => {
 					<Logo />
 				</Link>
 			</div>
-			<div className='w-full flex gap-2 justify-end md:justify-center'>
-				<SearchBar />
-				<Button className='p-2 bg-transparent md:bg-gray-200 hover:bg-gray-300'>
-					<MdMic size={24} />
-				</Button>
-			</div>
+			<SearchBar />
 			<div className='flex items-center gap-2 ml-2 md:ml-0'>
 				<Button className='p-2 bg-transparent hover:bg-gray-200'>
 					<MdVideoCall size={24} />

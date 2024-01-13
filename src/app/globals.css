@@ -30,11 +30,23 @@
   h6 {
     @apply text-sm
   }
+
+  button {
+    @apply outline-none
+  }
 }
 
 @layer components {
   /* width */
-    .scrollbar::-webkit-scrollbar {
+  .scrollbar-x-none::-webkit-scrollbar{
+    height: 0px;
+  }
+  .scrollbar-y-none::-webkit-scrollbar{
+    width: 0px;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    height: 10px;
     width: 10px;
   }
 

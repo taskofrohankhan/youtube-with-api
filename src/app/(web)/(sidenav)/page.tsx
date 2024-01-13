@@ -31,8 +31,8 @@ export default function Home() {
 	}, [inView, fetchNextPage, hasNextPage])
 
 	return (
-		<div className='md:ml-60 w-full flex flex-col justify-center'>
-			<div className='max-w-[3840px] mx-auto flex flex-wrap gap-x-3 gap-y-4 pl-3 pr-6 py-3'>
+		<div className='md:pl-60 6xl:pl-0 w-full flex flex-col justify-center'>
+			<div className='5xl:max-w-[2880px] mx-auto flex flex-wrap gap-x-3 gap-y-4 pl-3 pr-6 py-3'>
 				{resVideos?.pages.map((data: ResVideos) =>
 					data.items?.map((item: ItemsEntity) => (
 						<VideoCard

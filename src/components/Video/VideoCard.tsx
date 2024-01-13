@@ -29,7 +29,7 @@ export const VideoCard: React.FunctionComponent<VideoCardProps> = ({
 	showAvatar,
 }) => {
 	return (
-		<div className='flex flex-col flex-1 basis-auto md:basis-80 md:max-w-[380px] h-auto gap-2 overflow-hidden'>
+		<div className='flex flex-col flex-1 w-full md:min-w-80 md:max-w-[380px] h-auto gap-2 overflow-hidden'>
 			<div className='relative'>
 				<Link href={`/watch?v=${videoId}`}>
 					<div className='rounded-xl overflow-clip'>

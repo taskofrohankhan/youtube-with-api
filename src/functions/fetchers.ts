@@ -101,8 +101,10 @@ export const playlists = async ({
 
 export const playlistItems = async ({
 	playlistId,
+	pageParam,
 }: {
 	playlistId: string | undefined
+	pageParam: string | undefined
 }) => {
 	try {
 		const data = await axiosAPI({
@@ -111,6 +113,7 @@ export const playlistItems = async ({
 			params: {
 				part: 'contentDetails,snippet',
 				playlistId: playlistId,
+				pageToken: pageParam,
 			},
 		})
 		return data.data
