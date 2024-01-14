@@ -1,15 +1,15 @@
 'use client'
 
 import { Navlink } from '@/components/Sidebar/Navlink'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
 	MdHome,
 	MdOutlineHome,
-	MdSubscriptions,
-	MdOutlineSubscriptions,
-	MdHistory,
-	MdOutlineHistory,
+	// MdSubscriptions,
+	// MdOutlineSubscriptions,
+	// MdHistory,
+	// MdOutlineHistory,
 } from 'react-icons/md'
 
 interface SideBarProps {}
@@ -31,7 +31,7 @@ export const SideBar: React.FunctionComponent<SideBarProps> = () => {
 					}
 					text='Home'
 				/>
-				<Navlink
+				{/* <Navlink
 					path='/subscriptions'
 					pathname={pathname}
 					icon={
@@ -54,9 +54,9 @@ export const SideBar: React.FunctionComponent<SideBarProps> = () => {
 						)
 					}
 					text='History'
-				/>
+				/> */}
 			</div>
-			<div>
+			{/* <div>
 				<h3 className='py-3 text-sm font-bold'>Subscriptions</h3>
 				<Navlink
 					path='/channel'
@@ -72,7 +72,7 @@ export const SideBar: React.FunctionComponent<SideBarProps> = () => {
 					}
 					text='Wafilife'
 				/>
-			</div>
+			</div> */}
 		</aside>
 	)
 }

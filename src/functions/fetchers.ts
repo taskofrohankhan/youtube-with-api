@@ -122,10 +122,12 @@ export const playlistItems = async ({
 	}
 }
 
-export const searchForChannel = async ({
+export const searchVideoForChannel = async ({
 	channelId,
+	pageParam
 }: {
 	channelId: string
+	pageParam: string | undefined
 }) => {
 	try {
 		const data = await axiosAPI({
@@ -133,7 +135,9 @@ export const searchForChannel = async ({
 			url: '/search',
 			params: {
 				part: 'snippet',
+				type: 'video',
 				channelId: channelId,
+				pageToken: pageParam,
 			},
 		})
 		return data.data

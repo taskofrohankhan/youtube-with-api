@@ -4,15 +4,15 @@ import { VIDEOS_KEYS } from '@/constants/queryKeys'
 import { video } from '@/functions/fetchers'
 import { ItemsEntity } from '@/types/ResVideos'
 import { useQuery } from '@tanstack/react-query'
-import { VideoCard } from '../Video/VideoCard'
+import { VideoCard } from './VideoCard'
 
-interface ChannelSectionPlaylistItemProps {
+interface VideoByIdProps {
 	videoId: string
 }
 
-export const ChannelSectionPlaylistItem: React.FunctionComponent<
-	ChannelSectionPlaylistItemProps
-> = ({ videoId }) => {
+export const VideoById: React.FunctionComponent<VideoByIdProps> = ({
+	videoId,
+}) => {
 	const { isLoading, data: resVideo } = useQuery({
 		queryKey: [VIDEOS_KEYS.VIDEO_BY_ID, videoId],
 		queryFn: () => video({ videoId: videoId }),

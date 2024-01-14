@@ -28,13 +28,6 @@ export const ChannelNav: React.FunctionComponent<ChannelNavProps> = ({
 					} text-youtube-black`}>
 					<Link href={`/channel/${channelId}/videos`}>Videos</Link>
 				</li>
-				<li
-					className={`${
-						pathname === `/channel/${channelId}/playlists` &&
-						'border-b-2 border-b-youtube-black'
-					} text-youtube-black`}>
-					<Link href={`/channel/${channelId}/playlists`}>Playlists</Link>
-				</li>
 			</ul>
 		</div>
 	)
