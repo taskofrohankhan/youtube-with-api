@@ -24,13 +24,19 @@ export const videos = async ({
 	}
 }
 
-export const video = async ({ videoId }: { videoId: string }) => {
+export const video = async ({
+	videoId,
+	part,
+}: {
+	videoId: string
+	part?: string
+}) => {
 	try {
 		const data = await axiosAPI({
 			method: 'GET',
 			url: '/videos',
 			params: {
-				part: 'snippet,contentDetails,statistics',
+				part: 'snippet,contentDetails,statistics' + ',' + part,
 				id: videoId,
 			},
 		})

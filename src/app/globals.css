@@ -24,7 +24,7 @@
   }
 
   h5 {
-    @apply text-base
+    @apply text-base font-bold
   }
 
   h6 {

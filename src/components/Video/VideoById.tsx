@@ -33,6 +33,7 @@ export const VideoById: React.FunctionComponent<VideoByIdProps> = ({
 						channelId={item.snippet.channelId}
 						channelTitle={item.snippet.channelTitle}
 						showAvatar={false}
+						showHorizontal={false}
 					/>
 				))}
 		</>

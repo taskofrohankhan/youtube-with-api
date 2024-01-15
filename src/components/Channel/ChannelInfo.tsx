@@ -85,7 +85,7 @@ export const ChannelInfo: React.FunctionComponent<ChannelInfoProps> = ({
 										</span>
 									</div>
 									<div>
-										<Button className='bg-slate-950 hover:bg-slate-800 flex justify-center items-center rounded-full px-4 py-2'>
+										<Button className='bg-youtube-black hover:bg-gray-800 flex justify-center items-center rounded-full px-4 py-2'>
 											<span className='text-sm font-semibold text-white whitespace-nowrap'>
 												Subscribe
 											</span>

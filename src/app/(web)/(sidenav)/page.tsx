@@ -46,6 +46,7 @@ export default function Home() {
 							channelId={item.snippet.channelId}
 							channelTitle={item.snippet.channelTitle}
 							showAvatar={true}
+							showHorizontal={false}
 						/>
 					)),
 				)}
