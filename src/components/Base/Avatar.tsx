@@ -34,9 +34,9 @@ export const Avatar: React.FunctionComponent<AvatarProps> = ({
 						<Image
 							key={url}
 							src={url}
+							width={size}
+							height={size}
 							alt={'Profile picture'}
-							fill={true}
-							sizes={`${size}`}
 						/>
 					))}
 				</div>

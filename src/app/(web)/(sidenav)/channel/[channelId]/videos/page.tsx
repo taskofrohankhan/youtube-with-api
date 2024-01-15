@@ -42,17 +42,9 @@ export default function ChannelVideos({ params }: ChannelVideosProps) {
 		}
 	}, [inView, fetchNextPage, hasNextPage])
 
-	return (
-		<div className='w-full flex flex-wrap gap-x-3 gap-y-4 mt-6'>
-			{!isLoading ? (
-				<>
-					{resChannelVideos?.pages.map((data: ResChannelVideos) =>
-						data.items?.map((item: ItemsEntity) => (
-							<VideoById key={item.id.videoId} videoId={item.id.videoId} />
-						)),
-					)}
-				</>
-			) : (
+	if (isLoading) {
+		return (
+			<div className='w-full flex flex-wrap gap-x-3 gap-y-4 mt-6'>
 				<div
 					ref={ref}
 					className={`${
@@ -60,7 +52,28 @@ export default function ChannelVideos({ params }: ChannelVideosProps) {
 					} mx-auto`}>
 					<Spinner loadingState={isFetchingNextPage || hasNextPage} />
 				</div>
-			)}
+			</div>
+		)
+	}
+
+	return (
+		<div className='w-full flex flex-wrap gap-x-3 gap-y-4 mt-6'>
+			<>
+				{resChannelVideos?.pages.map((data: ResChannelVideos) =>
+					data.items?.map((item: ItemsEntity) => (
+						<VideoById key={item.id.videoId} videoId={item.id.videoId} />
+					)),
+				)}
+			</>
+			<div className='flex flex-col justify-center'>
+				<div
+					ref={ref}
+					className={`${
+						(isFetchingNextPage || hasNextPage) && 'w-10 h-10'
+					} mx-auto`}>
+					<Spinner loadingState={isFetchingNextPage || hasNextPage} />
+				</div>
+			</div>
 		</div>
 	)
 }

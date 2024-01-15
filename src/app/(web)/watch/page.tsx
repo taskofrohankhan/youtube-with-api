@@ -32,7 +32,7 @@ export default function Watch() {
 
 	const { isLoading, data: resVideo } = useQuery<ResVideoById>({
 		queryKey: [VIDEOS_KEYS.VIDEO_PLAY, v],
-		queryFn: () => video({ videoId: v!, part: 'player' }),
+		queryFn: () => video({ videoId: v! }),
 	})
 
 	const [collapse, setCollapse] = useState<boolean>(true)
@@ -59,7 +59,7 @@ export default function Watch() {
 
 	return (
 		<div className='w-full px-4 md:px-6 md:pt-3'>
-			<div className='w-fit mx-auto flex gap-x-6'>
+			<div className='w-fit mx-auto flex gap-x-4'>
 				<div className='flex flex-col gap-y-4'>
 					<div className='rounded-2xl overflow-clip'>
 						<iframe
@@ -68,7 +68,7 @@ export default function Watch() {
 							src={`//www.youtube.com/embed/${v}`}
 							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'></iframe>
 					</div>
-					<div className='flex flex-col'>
+					<div className='w-full md:w-[912px] flex flex-col'>
 						{!isLoading && (
 							<>
 								{resVideo?.items?.map((item: ItemsEntityVideoById) => (
@@ -145,7 +145,7 @@ export default function Watch() {
 												</div>
 											</div>
 										</div>
-										<div className='bg-gray-100 w-full p-3 rounded-xl'>
+										<div className='bg-gray-100 p-3 rounded-xl'>
 											<div className='flex gap-x-2'>
 												<span>
 													<StatisticConvertor
@@ -169,8 +169,8 @@ export default function Watch() {
 												</p>
 											</div>
 											<button
-                        onClick={() => setCollapse(!collapse)}
-                        className='text-base'
+												onClick={() => setCollapse(!collapse)}
+												className='text-base'
 												type='button'
 												title='Show more'>
 												{collapse ? 'Show more' : 'Show less'}
