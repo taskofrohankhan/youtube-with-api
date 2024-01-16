@@ -1,1 +1,1 @@
-export const YOUTUBE_API_KEY_ONE = 'AIzaSyDjmAw-NprHSJXmTa4Haifz3eRIJvMyHjY'
+export const YOUTUBE_API_KEY_ONE = 'AIzaSyDy2543ENhIgC34RDNsn3j-KvDoWyMW2Hs'
