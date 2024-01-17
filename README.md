@@ -3,9 +3,21 @@ YouTube with api is a front-end web application development project. This projec
 
 ### Covered features
 > Youtube is too big to cover all the features of real YouTube web app. I have just covered some everyday used features.
-- **YouTube home page** - Most popular videos of YouTube is fetched and infinite scroll feature is made.
-- **Channel page** - Channel sections in home tab are made only for single playlist category and a video tab is made with infinite scroll feature to fetch all the videos of a channel.
+- **Home Page** - Most popular videos of YouTube is fetched and infinite scroll feature is made.
+- **Channel Page** - Channel sections in home tab are made only for single playlist category and a video tab is made with infinite scroll feature to fetch all the videos of a channel.
 - **Video Watch Page** - A page for playing videos and showing the most popular videos of YouTube in the right side.
+
+### Shots of screens
+>Home Page
+
+![Home Page](/public/readme/01%20Home%20Page.png)
+>Channel Page
+
+![Channel Page](/public/readme/02%20Channel%20Page.png)
+
+>Video Watch Page
+
+![Video Watch Page](/public/readme/03%20Video%20Watch%20Page.png)
 
 ### Contact me
 Say hello,
